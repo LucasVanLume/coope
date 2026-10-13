@@ -97,7 +97,7 @@
                   radial-gradient(circle at 10% 85%, rgba(72, 92, 78, 0.04) 0%, transparent 60%);
     }
 
-    /* Navegação */
+    /* Navegação Inteligente (Oculta ao descer, reaparece ao subir) */
     .site-nav {
       position: fixed;
       top: 0;
@@ -111,7 +111,12 @@
       background: transparent;
       border-bottom: none;
       box-shadow: none;
-      transition: background 0.3s var(--ease), backdrop-filter 0.3s var(--ease), padding 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      will-change: transform;
+      transform: translateY(0);
+      transition: transform 0.38s cubic-bezier(0.2, 0.9, 0.3, 1), background 0.3s var(--ease), backdrop-filter 0.3s var(--ease), padding 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .site-nav.nav-hidden {
+      transform: translateY(-115%);
     }
     .site-nav.scrolled {
       background: rgba(250, 248, 242, 0.96);
@@ -594,6 +599,15 @@
     .sectionHeader.headerStagger h2:nth-child(3) {
       margin-left: clamp(48px, 22vw, 360px);
     }
+    .sectionHeader.headerRight {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .sectionHeader.headerRight h2 {
+      text-align: right;
+    }
 
     /* 1. SEÇÃO QUEM SOMOS (ESTILO #sectionSobre DUCKBILL COM REVELAÇÃO NO SCROLL) */
     .sectionSobre {
@@ -834,62 +848,46 @@
 
     /* 2. SEÇÃO PRESENÇA E UNIDADES (ESTILO #sectionFranquias DUCKBILL) */
     .sectionUnidades {
-      padding: 120px 0 70px;
+      padding: 120px 0 80px;
       background: var(--canvas-soft);
       position: relative;
+      overflow: hidden;
     }
     .unidadesGrid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 70px;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 90px;
+    }
+    .mapaIconRow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .mapaIconSvg {
+      width: 44px;
+      height: 44px;
+      color: var(--accent);
+      filter: drop-shadow(0 2px 8px rgba(184, 130, 34, 0.2));
     }
     .unidadesInfo h3 {
       font-family: var(--font-display);
-      font-size: 2.1rem;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1.18;
       color: var(--text-primary);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      font-weight: 800;
     }
     .unidadesInfo p {
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       color: var(--text-secondary);
       line-height: 1.8;
-      margin-bottom: 28px;
-    }
-    .unidadesCardVisual {
-      position: relative;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      box-shadow: var(--card-shadow);
-    }
-    .unidadesPinIcon {
-      width: 64px;
-      height: 64px;
       margin-bottom: 20px;
-      color: var(--accent);
     }
-    .unidadesBigCount {
-      font-family: var(--font-mono);
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .unidadesCountLabel {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 24px;
+    .unidadesInfo p:last-of-type {
+      margin-bottom: 34px;
     }
     .unidadesBadge {
       display: inline-flex;
@@ -904,38 +902,151 @@
       color: var(--accent);
     }
 
-    /* Faixas de Localidades Estilo Duckbill */
-    .localidadesMarquee {
+    /* Composição Visual Estilo Duckbill (Pin grande com foto circular DENTRO do pin) */
+    .unidadesVisualDuckbill {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+    }
+    .unidadesPinWrapper {
+      position: relative;
+      width: clamp(320px, 34vw, 380px);
+      height: clamp(440px, 46vw, 520px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      animation: pinFloatSubtle 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes pinFloatSubtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .unidadesBigPin {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 16px 36px rgba(184, 130, 34, 0.25));
+    }
+    /* A foto circular fica perfeitamente DENTRO do orificio da cabeca do pin */
+    .unidadesFotoFrame {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 63%;
+      height: 0;
+      padding-bottom: 63%;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.22), 0 4px 14px rgba(25, 39, 28, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.45);
+    }
+    .unidadesFotoFrame img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .unidadesPinWrapper:hover .unidadesFotoFrame img {
+      transform: scale(1.08);
+    }
+    .unidadesFloatBadge {
+      position: absolute;
+      bottom: 20px;
+      left: 15px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-accent);
+      border-radius: 20px;
+      padding: 14px 24px;
+      box-shadow: 0 12px 32px rgba(25, 39, 28, 0.12);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .unidadesFloatBadge strong {
+      font-family: var(--font-mono);
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+      font-weight: 700;
+    }
+    .unidadesFloatBadge span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* Faixas Duplas de Localidades (Estilo Duckbill) */
+    .localidadesDouble {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
       overflow: hidden;
       padding: 24px 0;
       background: var(--panel);
       position: relative;
     }
-    .marqueeTrack {
-      display: flex;
-      gap: 40px;
+    .localidadesLine {
+      overflow: hidden;
       white-space: nowrap;
-      animation: marqueeScroll 28s linear infinite;
+      display: flex;
     }
-    @keyframes marqueeScroll {
+    .marqueeTrackLeft {
+      display: flex;
+      gap: 36px;
+      white-space: nowrap;
+      animation: marqueeToLeft 36s linear infinite;
+    }
+    .marqueeTrackRight {
+      display: flex;
+      gap: 36px;
+      white-space: nowrap;
+      animation: marqueeToRight 36s linear infinite;
+    }
+    @keyframes marqueeToLeft {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .marqueeItem {
+    @keyframes marqueeToRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .localidadesItem {
       font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
+      font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-secondary);
       display: flex;
       align-items: center;
-      gap: 40px;
+      gap: 36px;
     }
-    .marqueeItem::after {
+    .localidadesItem.cAccentItem {
+      color: var(--accent);
+    }
+    .localidadesItem::after {
       content: '•';
       color: var(--accent);
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
 
     /* 3. SEÇÃO BANNER CTA DE DESTAQUE (ESTILO #sectionCtaFranquia DUCKBILL) */
@@ -1784,53 +1895,110 @@
       </svg>
 
       <div class="container">
-        <div class="sectionHeader">
+        <div class="sectionHeader headerRight">
           <h2>PRESENÇA E</h2>
           <h2 class="cAccent">UNIDADES</h2>
         </div>
 
         <div class="unidadesGrid">
           <div class="unidadesInfo">
-            <h3>A força do produtor conquistando novos polos</h3>
-            <p>A Cooperalta conta com uma infraestrutura completa e moderna de recebimento, com secadores industriais e capacidade de armazenagem estática de 1.4 milhão de sacas de grãos.</p>
-            <p>Nossas unidades estão estrategicamente posicionadas para reduzir o frete da sua fazenda e eliminar as filas nos períodos de colheita intensa.</p>
-            <a href="#filiacao" class="btnCustom">Ver todas as unidades</a>
+            <div class="mapaIconRow">
+              <svg class="mapaIconSvg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              <div class="unidadesBadge">
+                <span class="chip-dot"></span>
+                EXPANSÃO E COBERTURA REGIONAL
+              </div>
+            </div>
+            <h3>A força do produtor em 42 polos estratégicos</h3>
+            <p>A Cooperalta conta com infraestrutura completa de recebimento, com secadores industriais de alto fluxo e capacidade de armazenagem estática de 1.4 milhão de sacas de grãos.</p>
+            <p>Nossas unidades estão estrategicamente posicionadas para encurtar as distâncias da sua lavoura e eliminar as filas de descarregamento no pico da safra.</p>
+            <a href="#filiacao" class="btnCustom">Localizar unidade mais próxima</a>
           </div>
 
-          <div class="unidadesCardVisual">
-            <svg class="unidadesPinIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <div class="unidadesBigCount">42</div>
-            <div class="unidadesCountLabel">Unidades de Recebimento e Silos</div>
-            <div class="unidadesBadge">
-              <span class="chip-dot"></span>
-              Atendimento Regional Integrado
+          <!-- Composição Visual Estilo Duckbill (image.png: Pin grande com foto circular DENTRO do pin) -->
+          <div class="unidadesVisualDuckbill">
+            <div class="unidadesPinWrapper">
+              <!-- Pin perfeitamente simétrico, liso e na paleta do site -->
+              <svg class="unidadesBigPin" viewBox="0 0 380 500" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="pinGrad" x1="190" y1="12" x2="190" y2="475" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#C58F2D" />
+                    <stop offset="100%" stop-color="#A57218" />
+                  </linearGradient>
+                </defs>
+                <path d="M 190 12
+                         C 272 12, 338 78, 338 160
+                         C 338 220, 305 285, 250 365
+                         C 215 415, 196 455, 192 472
+                         C 191 475, 189 475, 188 472
+                         C 184 455, 165 415, 130 365
+                         C 75 285, 42 220, 42 160
+                         C 42 78, 108 12, 190 12 Z" 
+                      fill="url(#pinGrad)" />
+              </svg>
+
+              <!-- Foto circular posicionada perfeitamente DENTRO do pin -->
+              <div class="unidadesFotoFrame">
+                <img src="assets/section-armazenagem.jpg" alt="Silos de armazenagem e estrutura da Cooperalta" loading="lazy">
+              </div>
+            </div>
+
+            <div class="unidadesFloatBadge">
+              <strong>42</strong>
+              <span>Polos Integrados</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Faixa corrida de Estados (Localidades Estilo Duckbill) -->
-      <div class="localidadesMarquee" aria-hidden="true">
-        <div class="marqueeTrack">
-          <div class="marqueeItem">Paraná</div>
-          <div class="marqueeItem">Mato Grosso do Sul</div>
-          <div class="marqueeItem">Goiás</div>
-          <div class="marqueeItem">Minas Gerais</div>
-          <div class="marqueeItem">São Paulo</div>
-          <div class="marqueeItem">Rio Grande do Sul</div>
-          <div class="marqueeItem">Mato Grosso</div>
-          <div class="marqueeItem">Bahia</div>
-          <div class="marqueeItem">Paraná</div>
-          <div class="marqueeItem">Mato Grosso do Sul</div>
-          <div class="marqueeItem">Goiás</div>
-          <div class="marqueeItem">Minas Gerais</div>
-          <div class="marqueeItem">São Paulo</div>
-          <div class="marqueeItem">Rio Grande do Sul</div>
-          <div class="marqueeItem">Mato Grosso</div>
-          <div class="marqueeItem">Bahia</div>
+      <!-- Faixas Duplas de Localidades (Estilo Duckbill com Direções Opostas) -->
+      <div class="localidadesDouble" aria-hidden="true">
+        <!-- Linha 1: Estados correndo para a esquerda -->
+        <div class="localidadesLine">
+          <div class="marqueeTrackLeft">
+            <div class="localidadesItem">Paraná</div>
+            <div class="localidadesItem cAccentItem">Mato Grosso do Sul</div>
+            <div class="localidadesItem">Goiás</div>
+            <div class="localidadesItem cAccentItem">Minas Gerais</div>
+            <div class="localidadesItem">São Paulo</div>
+            <div class="localidadesItem cAccentItem">Rio Grande do Sul</div>
+            <div class="localidadesItem">Mato Grosso</div>
+            <div class="localidadesItem cAccentItem">Bahia</div>
+            <!-- Duplicata para loop contínuo -->
+            <div class="localidadesItem">Paraná</div>
+            <div class="localidadesItem cAccentItem">Mato Grosso do Sul</div>
+            <div class="localidadesItem">Goiás</div>
+            <div class="localidadesItem cAccentItem">Minas Gerais</div>
+            <div class="localidadesItem">São Paulo</div>
+            <div class="localidadesItem cAccentItem">Rio Grande do Sul</div>
+            <div class="localidadesItem">Mato Grosso</div>
+            <div class="localidadesItem cAccentItem">Bahia</div>
+          </div>
+        </div>
+        <!-- Linha 2: Principais polos agrícolas correndo para a direita -->
+        <div class="localidadesLine">
+          <div class="marqueeTrackRight">
+            <div class="localidadesItem">Londrina</div>
+            <div class="localidadesItem cAccentItem">Dourados</div>
+            <div class="localidadesItem">Rio Verde</div>
+            <div class="localidadesItem cAccentItem">Cascavel</div>
+            <div class="localidadesItem">Patos de Minas</div>
+            <div class="localidadesItem cAccentItem">Sorriso</div>
+            <div class="localidadesItem">Passo Fundo</div>
+            <div class="localidadesItem cAccentItem">Luís Eduardo Magalhães</div>
+            <!-- Duplicata para loop contínuo -->
+            <div class="localidadesItem">Londrina</div>
+            <div class="localidadesItem cAccentItem">Dourados</div>
+            <div class="localidadesItem">Rio Verde</div>
+            <div class="localidadesItem cAccentItem">Cascavel</div>
+            <div class="localidadesItem">Patos de Minas</div>
+            <div class="localidadesItem cAccentItem">Sorriso</div>
+            <div class="localidadesItem">Passo Fundo</div>
+            <div class="localidadesItem cAccentItem">Luís Eduardo Magalhães</div>
+          </div>
         </div>
       </div>
     </section>
@@ -2343,15 +2511,39 @@
         });
       }
 
-      function handleGlobalScroll() {
+      let lastScrollY = window.scrollY || 0;
+      const navScrollThreshold = 90;
+
+      function updateSmartNavbar() {
         const nav = document.getElementById('navbar');
-        if (nav) {
-          if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-          } else {
-            nav.classList.remove('scrolled');
+        if (!nav) return;
+
+        const currentScrollY = window.scrollY || 0;
+        const delta = currentScrollY - lastScrollY;
+
+        // No topo da pagina: sempre visivel e totalmente transparente
+        if (currentScrollY <= 40) {
+          nav.classList.remove('nav-hidden');
+          nav.classList.remove('scrolled');
+        } else {
+          // Fora do topo: aplica fundo marfim suave fosco
+          nav.classList.add('scrolled');
+
+          // Rolando para baixo alem do limiar: oculta suavemente
+          if (delta > 8 && currentScrollY > navScrollThreshold) {
+            nav.classList.add('nav-hidden');
+          }
+          // Rolando para cima com intencao clara: reaparece suavemente
+          else if (delta < -5) {
+            nav.classList.remove('nav-hidden');
           }
         }
+
+        lastScrollY = currentScrollY;
+      }
+
+      function handleGlobalScroll() {
+        updateSmartNavbar();
 
         const cue = document.getElementById('scroll-cue');
         if (cue) {
