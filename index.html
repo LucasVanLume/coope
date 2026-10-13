@@ -529,45 +529,50 @@
       position: absolute;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.38;
-      filter: drop-shadow(0 4px 10px rgba(184, 130, 34, 0.16));
+      opacity: 0.28;
+      filter: drop-shadow(0 2px 8px rgba(184, 130, 34, 0.14));
       will-change: transform;
-      transition: opacity 0.3s var(--ease);
+      transition: opacity 0.4s var(--ease);
+    }
+    @media (max-width: 640px) {
+      .floatAsset {
+        display: none;
+      }
     }
     .asset-grain {
+      width: clamp(24px, 2.2vw, 34px);
+      height: clamp(24px, 2.2vw, 34px);
+    }
+    .asset-wheat {
+      width: clamp(28px, 2.8vw, 40px);
+      height: clamp(34px, 3.4vw, 48px);
+    }
+    .asset-leaf {
       width: clamp(26px, 2.5vw, 36px);
       height: clamp(26px, 2.5vw, 36px);
     }
-    .asset-wheat {
-      width: clamp(32px, 3vw, 44px);
-      height: clamp(32px, 3vw, 44px);
-    }
-    .asset-leaf {
-      width: clamp(28px, 2.8vw, 40px);
-      height: clamp(28px, 2.8vw, 40px);
-    }
 
     .floatAnim1 {
-      animation: floatMotion1 8.5s ease-in-out infinite;
+      animation: floatMotion1 9s ease-in-out infinite;
     }
     .floatAnim2 {
-      animation: floatMotion2 10.5s ease-in-out infinite 1.5s;
+      animation: floatMotion2 11s ease-in-out infinite 1.5s;
     }
     .floatAnim3 {
-      animation: floatMotion3 12.5s ease-in-out infinite 3s;
+      animation: floatMotion3 13s ease-in-out infinite 3s;
     }
 
     @keyframes floatMotion1 {
       0%, 100% { transform: translateY(var(--py, 0px)) rotate(0deg); }
-      50% { transform: translateY(calc(var(--py, 0px) - 16px)) rotate(8deg); }
+      50% { transform: translateY(calc(var(--py, 0px) - 14px)) rotate(6deg); }
     }
     @keyframes floatMotion2 {
       0%, 100% { transform: translateY(var(--py, 0px)) rotate(0deg); }
-      50% { transform: translateY(calc(var(--py, 0px) - 20px)) rotate(-10deg); }
+      50% { transform: translateY(calc(var(--py, 0px) - 18px)) rotate(-8deg); }
     }
     @keyframes floatMotion3 {
       0%, 100% { transform: translateY(var(--py, 0px)) rotate(0deg); }
-      50% { transform: translateY(calc(var(--py, 0px) - 14px)) rotate(6deg); }
+      50% { transform: translateY(calc(var(--py, 0px) - 12px)) rotate(5deg); }
     }
 
     /* ==========================================================================
@@ -581,7 +586,7 @@
 
     /* Cabeçalhos Gigantes Estilo Duckbill */
     .sectionHeader {
-      margin-bottom: 60px;
+      margin-bottom: 45px;
     }
     .sectionHeader h2 {
       font-family: var(--font-display);
@@ -611,7 +616,7 @@
 
     /* 1. SEÇÃO QUEM SOMOS (ESTILO #sectionSobre DUCKBILL COM REVELAÇÃO NO SCROLL) */
     .sectionSobre {
-      padding: 110px 0 90px;
+      padding: 80px 0 70px;
       position: relative;
       background-color: var(--canvas);
       overflow: hidden;
@@ -624,7 +629,7 @@
       border: 1px solid var(--border-accent);
       box-shadow: var(--card-shadow);
       min-height: 620px;
-      margin-top: 45px;
+      margin-top: 36px;
       background: var(--canvas-soft);
       padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
       display: flex;
@@ -848,7 +853,7 @@
 
     /* 2. SEÇÃO PRESENÇA E UNIDADES (ESTILO #sectionFranquias DUCKBILL) */
     .sectionUnidades {
-      padding: 120px 0 80px;
+      padding: 80px 0 60px;
       background: var(--canvas-soft);
       position: relative;
       overflow: hidden;
@@ -858,7 +863,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 70px;
       align-items: center;
-      margin-bottom: 90px;
+      margin-bottom: 55px;
     }
     .mapaIconRow {
       display: flex;
@@ -1000,7 +1005,7 @@
       flex-direction: column;
       gap: 14px;
       overflow: hidden;
-      padding: 24px 0;
+      padding: 20px 0;
       background: var(--panel);
       position: relative;
     }
@@ -1051,65 +1056,181 @@
 
     /* 3. SEÇÃO BANNER CTA DE DESTAQUE (ESTILO #sectionCtaFranquia DUCKBILL) */
     .sectionCtaBanner {
-      padding: 90px 0;
+      padding: 60px 0;
       background-color: var(--canvas);
       position: relative;
     }
-    .ctaCardBox {
-      background: linear-gradient(135deg, #182C1B 0%, #101E13 100%);
-      border: 2px solid var(--border-accent);
+    #sectionCtaFranquia .ctaCardBox {
+      background: radial-gradient(circle at 90% 25%, rgba(184, 130, 34, 0.12) 0%, transparent 45%),
+                  linear-gradient(110deg, #0E1A11 0%, #132415 48%, #162818 100%);
+      border: 1px solid var(--border-accent);
       border-radius: 28px;
-      padding: 70px 80px;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 50px;
+      padding: 64px 75px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(13, 23, 14, 0.22);
+      color: #FAF8F2;
+      display: flex;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(18, 30, 20, 0.25);
-      color: #F8FAF8;
+      min-height: 420px;
     }
-    .ctaCardBox::before {
-      content: '';
+    #sectionCtaFranquia .ctaBgPattern {
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(184, 130, 34, 0.18) 0%, transparent 70%);
+      inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
+      z-index: 1;
+      opacity: 0.8;
     }
-    .ctaCardText h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 3.8vw, 3.6rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: #FFFFFF;
+    #sectionCtaFranquia .ctaBgPattern svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    .ctaCardText p {
-      font-size: 1.15rem;
-      color: #B4C6B7;
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 52ch;
-    }
-    .ctaCardVisual {
+    #sectionCtaFranquia .txtBox {
       position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      height: 320px;
-      border: 1px solid var(--border);
+      z-index: 3;
+      max-width: 580px;
     }
-    .ctaCardVisual img {
+    #sectionCtaFranquia .ctaBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(184, 130, 34, 0.16);
+      border: 1px solid rgba(184, 130, 34, 0.35);
+      border-radius: 30px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    #sectionCtaFranquia h2.fIntro {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 3.8vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.06;
+      color: #FFFFFF;
+      margin: 0 0 18px;
+      letter-spacing: -0.01em;
+    }
+    #sectionCtaFranquia .txtBox p {
+      font-size: clamp(1rem, 1.15vw, 1.12rem);
+      line-height: 1.7;
+      color: #CAD6CC;
+      margin: 0 0 32px;
+      max-width: 490px;
+    }
+    #sectionCtaFranquia .animGroup {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #sectionCtaFranquia .ctaRightImgWrap {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 58%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+    #sectionCtaFranquia .rightImg {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 80% center;
+      display: block;
+      filter: contrast(1.06) saturate(1.12);
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 6%,
+        rgba(0, 0, 0, 0.02) 14%,
+        rgba(0, 0, 0, 0.08) 24%,
+        rgba(0, 0, 0, 0.22) 36%,
+        rgba(0, 0, 0, 0.46) 50%,
+        rgba(0, 0, 0, 0.74) 66%,
+        rgba(0, 0, 0, 0.94) 84%,
+        #000000 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 6%,
+        rgba(0, 0, 0, 0.02) 14%,
+        rgba(0, 0, 0, 0.08) 24%,
+        rgba(0, 0, 0, 0.22) 36%,
+        rgba(0, 0, 0, 0.46) 50%,
+        rgba(0, 0, 0, 0.74) 66%,
+        rgba(0, 0, 0, 0.94) 84%,
+        #000000 100%
+      );
+    }
+    #sectionCtaFranquia .ctaImgGradientFade {
+      display: none;
+    }
+
+    /* Responsividade inspirada no Duckbill */
+    @media (max-width: 992px) {
+      #sectionCtaFranquia .ctaCardBox {
+        padding: 40px 24px;
+        padding-top: 210px;
+        min-height: auto;
+      }
+      #sectionCtaFranquia .ctaRightImgWrap {
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 220px;
+      }
+      #sectionCtaFranquia .rightImg {
+        object-position: 80% 30%;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          #000000 0%,
+          #000000 40%,
+          rgba(0, 0, 0, 0.85) 60%,
+          rgba(0, 0, 0, 0.45) 80%,
+          rgba(0, 0, 0, 0.1) 94%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          #000000 0%,
+          #000000 40%,
+          rgba(0, 0, 0, 0.85) 60%,
+          rgba(0, 0, 0, 0.45) 80%,
+          rgba(0, 0, 0, 0.1) 94%,
+          transparent 100%
+        );
+      }
+      #sectionCtaFranquia .ctaImgGradientFade {
+        display: none;
+      }
+      #sectionCtaFranquia .txtBox {
+        max-width: 100%;
+      }
+      #sectionCtaFranquia .txtBox p {
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 480px) {
+      #sectionCtaFranquia .animGroup .btnCustom {
+        width: 100%;
+      }
     }
 
     /* 4. SEÇÃO PRODUTOS / SOLUÇÕES EM DESTAQUE (ESTILO #sectionProdutos DUCKBILL) */
     .sectionProdutos {
-      padding: 120px 0;
+      padding: 80px 0;
       background: var(--canvas);
       position: relative;
     }
@@ -1178,134 +1299,11 @@
       line-height: 1.6;
     }
 
-    /* 5. SEÇÃO MOMENTO INTERATIVO: SIMULADOR DE BENEFÍCIOS */
-    .sim-section {
-      padding: 120px 0;
-      background: var(--canvas-soft);
-      position: relative;
-    }
-    .sim-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 56px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-      box-shadow: var(--card-shadow);
-    }
-    .sim-inputs h3 {
-      font-family: var(--font-display);
-      font-size: 1.85rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .sim-inputs p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      margin-bottom: 32px;
-    }
-    .sim-control {
-      margin-bottom: 30px;
-    }
-    .sim-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 10px;
-    }
-    .sim-label {
-      font-weight: 700;
-      font-size: 1rem;
-    }
-    .sim-val {
-      font-family: var(--font-mono);
-      font-size: 1.35rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .sim-range {
-      width: 100%;
-      height: 8px;
-      background: #EAE5D9;
-      border-radius: 4px;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      cursor: pointer;
-    }
-    .sim-range::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      box-shadow: 0 0 16px var(--accent-glow);
-      transition: transform 0.15s var(--ease);
-    }
-    .sim-range::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-    .culture-pills {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .culture-btn {
-      padding: 10px 20px;
-      background: #F4EFE6;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      border-radius: 8px;
-      font-size: 0.92rem;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.2s var(--ease);
-    }
-    .culture-btn.active {
-      background: var(--accent);
-      color: #FFFFFF;
-      border-color: var(--accent);
-    }
-    .sim-results {
-      background: var(--panel-light);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-    .sim-res-item {
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid rgba(90, 115, 95, 0.12);
-      padding-bottom: 20px;
-    }
-    .sim-res-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    .sim-res-title {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
-    }
-    .sim-res-number {
-      font-family: var(--font-mono);
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-    .sim-res-number.highlight {
-      color: var(--accent);
-    }
+
 
     /* 6. SEÇÃO DEPOIMENTOS (ESTILO #sectionDepoimentos DUCKBILL) */
     .sectionDepoimentos {
-      padding: 130px 0;
+      padding: 80px 0;
       background: var(--canvas);
       position: relative;
     }
@@ -1383,7 +1381,7 @@
 
     /* 7. SEÇÃO FAQ */
     .sectionFaq {
-      padding: 110px 0;
+      padding: 80px 0;
       background: var(--canvas-soft);
       position: relative;
     }
@@ -1392,7 +1390,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-top: 40px;
+      margin-top: 32px;
     }
     .faq-item {
       background: var(--panel);
@@ -1438,7 +1436,7 @@
 
     /* 8. SEÇÃO FORMULÁRIO DE FILIAÇÃO */
     .sectionFiliacao {
-      padding: 120px 0;
+      padding: 80px 0 90px;
       background: var(--canvas-soft);
       position: relative;
     }
@@ -1448,7 +1446,7 @@
       background: var(--panel);
       border: 1px solid var(--border-accent);
       border-radius: 24px;
-      padding: 60px;
+      padding: 50px 56px;
       box-shadow: var(--card-shadow);
     }
     .form-grid {
@@ -1511,7 +1509,7 @@
       overflow: hidden;
     }
     .footerGiantBanner {
-      padding: 90px 0 50px;
+      padding: 65px 0 40px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
     }
@@ -1527,7 +1525,7 @@
       margin: 0;
     }
     .footerMainContent {
-      padding: 60px 0;
+      padding: 45px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1616,14 +1614,11 @@
 
     /* Responsividade */
     @media (max-width: 1024px) {
-      .sobreGrid, .unidadesGrid, .ctaCardBox, .sim-card, .depoimentosLayout {
+      .sobreGrid, .unidadesGrid, .depoimentosLayout {
         grid-template-columns: 1fr;
       }
       .produtosGrid {
         grid-template-columns: 1fr 1fr;
-      }
-      .ctaCardBox {
-        padding: 48px 36px;
       }
     }
 
@@ -1684,7 +1679,6 @@
         <li><a href="#sobre">Sobre Nós</a></li>
         <li><a href="#unidades">Unidades</a></li>
         <li><a href="#produtos">Destaques</a></li>
-        <li><a href="#simulador">Simulador</a></li>
         <li><a href="#depoimentos">Cooperados</a></li>
       </ul>
       <a href="#filiacao" class="nav-cta">Associe-se</a>
@@ -1788,11 +1782,11 @@
     <!-- 1. SEÇÃO QUEM SOMOS (ESTILO #sectionSobre DUCKBILL COM REVELAÇÃO NO SCROLL) -->
     <section class="sectionSobre" id="sobre">
       <!-- Assets flutuantes discretos estilo Duckbill -->
-      <svg class="floatAsset asset-grain floatAnim1" data-speed="0.08" style="top: 6%; left: 3%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-grain floatAnim1" data-speed="0.06" style="top: 10%; left: 2.5%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
         <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
       </svg>
-      <svg class="floatAsset asset-wheat floatAnim2" data-speed="-0.07" style="top: 28%; right: 3%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-wheat floatAnim2" data-speed="-0.06" style="bottom: 14%; right: 2.5%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
         <path d="M18 42V4" stroke="#B88222" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M18 10C14 7 11 10 11 14C11 17 15 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 10C22 7 25 10 25 14C25 17 21 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
@@ -1800,10 +1794,6 @@
         <path d="M18 18C22 15 25 18 25 22C25 25 21 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 26C14 23 11 26 11 30C11 33 15 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 26C22 23 25 26 25 30C25 33 21 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-      </svg>
-      <svg class="floatAsset asset-leaf floatAnim3" data-speed="0.10" style="bottom: 8%; left: 4%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
-        <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
 
       <div class="container">
@@ -1885,11 +1875,11 @@
     <!-- 2. SEÇÃO PRESENÇA E UNIDADES (ESTILO #sectionFranquias DUCKBILL) -->
     <section class="sectionUnidades" id="unidades">
       <!-- Assets flutuantes discretos -->
-      <svg class="floatAsset asset-leaf floatAnim2" data-speed="0.08" style="top: 10%; right: 3%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-leaf floatAnim3" data-speed="0.07" style="top: 12%; right: 2.5%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
         <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
-      <svg class="floatAsset asset-grain floatAnim3" data-speed="-0.06" style="bottom: 14%; left: 3%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-grain floatAnim1" data-speed="-0.05" style="bottom: 18%; left: 2.5%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
         <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
       </svg>
@@ -2004,16 +1994,36 @@
     </section>
 
     <!-- 3. BANNER CTA DE DESTAQUE (ESTILO #sectionCtaFranquia DUCKBILL) -->
-    <section class="sectionCtaBanner">
+    <section class="sectionCtaBanner" id="sectionCtaFranquia">
       <div class="container">
         <div class="ctaCardBox">
-          <div class="ctaCardText">
-            <h2>Quer ser um produtor cooperado?</h2>
-            <p>Converse com nosso time agronômico e entenda como ter acesso a insumos com poder de compra coletivo, armazenagem garantida e rateio proporcional de sobras.</p>
-            <a href="#filiacao" class="btnCustom">Tenho interesse</a>
+          <!-- Padrão gráfico decorativo de fundo inspirado no background-pattern Duckbill -->
+          <div class="ctaBgPattern" aria-hidden="true">
+            <svg viewBox="0 0 800 400" preserveAspectRatio="none">
+              <path d="M-100,200 Q200,50 500,220 T1100,180" stroke="rgba(184, 130, 34, 0.08)" stroke-width="2" fill="none"/>
+              <path d="M-100,260 Q250,110 550,280 T1100,240" stroke="rgba(184, 130, 34, 0.06)" stroke-width="1.5" fill="none"/>
+              <path d="M-100,320 Q300,170 600,340 T1100,300" stroke="rgba(184, 130, 34, 0.04)" stroke-width="1.5" fill="none"/>
+              <text x="36" y="360" font-family="var(--font-mono)" font-size="36" font-weight="900" fill="rgba(255,255,255,0.025)" letter-spacing="8">COOPE • PERNAMBUCO • AGRO NOBRE</text>
+            </svg>
           </div>
-          <div class="ctaCardVisual">
-            <img src="assets/section-armazenagem.jpg" alt="Silos de grãos da Coope" loading="lazy">
+
+          <!-- Conteúdo de texto e chamada -->
+          <div class="txtBox">
+            <div class="ctaBadge">
+              <span class="chip-dot"></span>
+              COOPERATIVISMO NO CAMPO
+            </div>
+            <h2 class="fIntro">Quer ser um produtor<br> cooperado da Coope?</h2>
+            <p>Converse com nosso time técnico agronômico e entenda como ter acesso a insumos com poder de compra coletivo, armazenagem garantida e rateio proporcional de sobras.</p>
+            <div class="animGroup">
+              <a href="#filiacao" class="btnCustom">Tenho interesse</a>
+            </div>
+          </div>
+
+          <!-- Imagem integrada perfeitamente à direita com fusão orgânica no background -->
+          <div class="ctaRightImgWrap" aria-hidden="true">
+            <img src="assets/section-armazenagem.jpg" alt="Silos de grãos da Coope" class="rightImg" loading="lazy">
+            <div class="ctaImgGradientFade"></div>
           </div>
         </div>
       </div>
@@ -2022,7 +2032,7 @@
     <!-- 4. SOLUÇÕES E CULTURAS EM DESTAQUE (ESTILO #sectionProdutos DUCKBILL) -->
     <section class="sectionProdutos" id="produtos">
       <!-- Assets flutuantes discretos -->
-      <svg class="floatAsset asset-wheat floatAnim1" data-speed="0.07" style="top: 8%; left: 3%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-wheat floatAnim2" data-speed="0.07" style="top: 12%; left: 2.5%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
         <path d="M18 42V4" stroke="#B88222" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M18 10C14 7 11 10 11 14C11 17 15 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 10C22 7 25 10 25 14C25 17 21 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
@@ -2031,13 +2041,9 @@
         <path d="M18 26C14 23 11 26 11 30C11 33 15 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 26C22 23 25 26 25 30C25 33 21 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
       </svg>
-      <svg class="floatAsset asset-grain floatAnim2" data-speed="-0.08" style="top: 52%; right: 3%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-grain floatAnim1" data-speed="-0.06" style="bottom: 14%; right: 2.5%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
         <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
-      </svg>
-      <svg class="floatAsset asset-leaf floatAnim3" data-speed="0.09" style="bottom: 6%; left: 4%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
-        <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
 
       <div class="container">
@@ -2094,14 +2100,15 @@
       </div>
     </section>
 
-    <!-- 5. SIMULADOR INTERATIVO DE BENEFÍCIOS -->
-    <section class="sim-section" id="simulador">
+
+    <!-- 6. DEPOIMENTOS (ESTILO #sectionDepoimentos DUCKBILL) -->
+    <section class="sectionDepoimentos" id="depoimentos">
       <!-- Assets flutuantes discretos -->
-      <svg class="floatAsset asset-grain floatAnim1" data-speed="0.07" style="top: 12%; right: 4%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
-        <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
+      <svg class="floatAsset asset-leaf floatAnim3" data-speed="0.06" style="top: 14%; right: 2.5%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
+        <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
-      <svg class="floatAsset asset-wheat floatAnim3" data-speed="-0.08" style="bottom: 10%; left: 3%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-wheat floatAnim2" data-speed="-0.06" style="bottom: 16%; left: 2.5%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
         <path d="M18 42V4" stroke="#B88222" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M18 10C14 7 11 10 11 14C11 17 15 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 10C22 7 25 10 25 14C25 17 21 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
@@ -2109,70 +2116,6 @@
         <path d="M18 18C22 15 25 18 25 22C25 25 21 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 26C14 23 11 26 11 30C11 33 15 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
         <path d="M18 26C22 23 25 26 25 30C25 33 21 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-      </svg>
-
-      <div class="container">
-        <div class="sectionHeader" style="margin-bottom: 40px;">
-          <h2>CALCULE SEU</h2>
-          <h2 class="cAccent">RETORNO ANUAL</h2>
-        </div>
-
-        <div class="sim-card">
-          <div class="sim-inputs">
-            <h3>Simule o Impacto na sua Fazenda</h3>
-            <p>Ajuste o tamanho da sua área produtiva e veja a estimativa de economia e sobras distribuídas.</p>
-
-            <div class="sim-control">
-              <div class="sim-label-row">
-                <span class="sim-label">Área de Plantio</span>
-                <span class="sim-val" id="area-val">250 ha</span>
-              </div>
-              <input type="range" id="area-slider" class="sim-range" min="30" max="2500" step="10" value="250" aria-label="Área de Plantio em Hectares">
-            </div>
-
-            <div class="sim-control">
-              <span class="sim-label">Cultura Principal</span>
-              <div class="culture-pills">
-                <button type="button" class="culture-btn active" data-culture="soja">Soja</button>
-                <button type="button" class="culture-btn" data-culture="milho">Milho</button>
-                <button type="button" class="culture-btn" data-culture="trigo">Trigo</button>
-                <button type="button" class="culture-btn" data-culture="cafe">Café</button>
-              </div>
-            </div>
-
-            <div style="margin-top: 32px;">
-              <a href="#filiacao" class="btnCustom" style="width: 100%;">Quero estas condições na minha safra</a>
-            </div>
-          </div>
-
-          <div class="sim-results">
-            <div class="sim-res-item">
-              <span class="sim-res-title">Economia Estimada em Insumos (Adubos e Sementes)</span>
-              <span class="sim-res-number" id="res-insumos">R$ 68.750</span>
-            </div>
-            <div class="sim-res-item">
-              <span class="sim-res-title">Armazenagem Garantida nos Silos</span>
-              <span class="sim-res-number" id="res-sacas">16.250 sacas</span>
-            </div>
-            <div class="sim-res-item">
-              <span class="sim-res-title">Estimativa de Sobras Distribuídas ao Produtor</span>
-              <span class="sim-res-number highlight" id="res-sobras">R$ 48.750</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. DEPOIMENTOS (ESTILO #sectionDepoimentos DUCKBILL) -->
-    <section class="sectionDepoimentos" id="depoimentos">
-      <!-- Assets flutuantes discretos -->
-      <svg class="floatAsset asset-leaf floatAnim2" data-speed="0.08" style="top: 8%; left: 3%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
-        <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-      <svg class="floatAsset asset-grain floatAnim1" data-speed="-0.07" style="top: 48%; right: 3%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
-        <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
       </svg>
 
       <div class="container">
@@ -2218,16 +2161,11 @@
     <!-- 7. SEÇÃO FAQ -->
     <section class="sectionFaq" id="faq">
       <!-- Assets flutuantes discretos -->
-      <svg class="floatAsset asset-wheat floatAnim2" data-speed="0.07" style="top: 14%; right: 4%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
-        <path d="M18 42V4" stroke="#B88222" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M18 10C14 7 11 10 11 14C11 17 15 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-        <path d="M18 10C22 7 25 10 25 14C25 17 21 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-        <path d="M18 18C14 15 11 18 11 22C11 25 15 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-        <path d="M18 18C22 15 25 18 25 22C25 25 21 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-        <path d="M18 26C14 23 11 26 11 30C11 33 15 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
-        <path d="M18 26C22 23 25 26 25 30C25 33 21 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+      <svg class="floatAsset asset-grain floatAnim1" data-speed="0.06" style="top: 14%; left: 2.5%;" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 3C10 5 6 12 8 19C10 26 18 29 23 25C28 21 27 11 23 6C20 4 18 3 16 3Z" fill="#B88222" fill-opacity="0.22" stroke="#B88222" stroke-width="1.6"/>
+        <path d="M13 8C11 13 12 19 16 23" stroke="#9E6E19" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
       </svg>
-      <svg class="floatAsset asset-leaf floatAnim3" data-speed="-0.08" style="bottom: 10%; left: 3%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <svg class="floatAsset asset-leaf floatAnim3" data-speed="-0.06" style="bottom: 16%; right: 2.5%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
         <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
@@ -2272,6 +2210,20 @@
 
     <!-- 8. FORMULÁRIO DE FILIAÇÃO -->
     <section class="sectionFiliacao" id="filiacao">
+      <!-- Assets flutuantes discretos -->
+      <svg class="floatAsset asset-wheat floatAnim2" data-speed="0.05" style="top: 14%; right: 2.8%;" viewBox="0 0 36 44" fill="none" aria-hidden="true">
+        <path d="M18 42V4" stroke="#B88222" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M18 10C14 7 11 10 11 14C11 17 15 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+        <path d="M18 10C22 7 25 10 25 14C25 17 21 17 18 17" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+        <path d="M18 18C14 15 11 18 11 22C11 25 15 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+        <path d="M18 18C22 15 25 18 25 22C25 25 21 25 18 25" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+        <path d="M18 26C14 23 11 26 11 30C11 33 15 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+        <path d="M18 26C22 23 25 26 25 30C25 33 21 33 18 33" fill="#B88222" fill-opacity="0.2" stroke="#B88222" stroke-width="1.2"/>
+      </svg>
+      <svg class="floatAsset asset-leaf floatAnim3" data-speed="-0.05" style="bottom: 14%; left: 2.8%;" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <path d="M6 30C8 20 18 10 30 6C30 18 20 28 6 30Z" fill="#2E4A32" fill-opacity="0.18" stroke="#2E4A32" stroke-width="1.4"/>
+        <path d="M6 30C14 24 22 16 30 6" stroke="#B88222" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
       <div class="container">
         <div class="form-box">
           <div class="sectionHeader" style="text-align: center; margin-bottom: 30px;">
@@ -2345,7 +2297,6 @@
           <li><a href="#sobre">A Cooperativa</a></li>
           <li><a href="#unidades">Unidades</a></li>
           <li><a href="#produtos">Soluções</a></li>
-          <li><a href="#simulador">Simulador</a></li>
           <li><a href="#depoimentos">Cooperados</a></li>
           <li><a href="#faq">Dúvidas</a></li>
           <li><a href="#filiacao">Seja um Cooperado</a></li>
@@ -2373,7 +2324,7 @@
   </footer>
 
   <!-- =========================================================================
-       SCRIPTS JAVASCRIPT: PIPELINE DE SCROLL + SIMULADOR + CONTROLES
+       SCRIPTS JAVASCRIPT: PIPELINE DE SCROLL + CONTROLES
        ========================================================================= -->
   <script>
     (function() {
@@ -2724,54 +2675,9 @@
       }, { passive: true });
       handleGlobalScroll();
 
-      // =========================================================================
-      // 2. SIMULADOR INTERATIVO DE BENEFÍCIOS
-      // =========================================================================
-      const areaSlider = document.getElementById('area-slider');
-      const areaVal = document.getElementById('area-val');
-      const resInsumos = document.getElementById('res-insumos');
-      const resSacas = document.getElementById('res-sacas');
-      const resSobras = document.getElementById('res-sobras');
-      const cultureBtns = document.querySelectorAll('.culture-btn');
-
-      let currentCulture = 'soja';
-      const cultureParams = {
-        soja: { sacasHa: 65, econInsumoHa: 275, sobraSaca: 3.0 },
-        milho: { sacasHa: 130, econInsumoHa: 340, sobraSaca: 1.5 },
-        trigo: { sacasHa: 48, econInsumoHa: 190, sobraSaca: 2.2 },
-        cafe: { sacasHa: 38, econInsumoHa: 620, sobraSaca: 8.5 }
-      };
-
-      function updateSimulator() {
-        if (!areaSlider) return;
-        const area = Number(areaSlider.value);
-        areaVal.textContent = area.toLocaleString('pt-BR') + ' ha';
-
-        const p = cultureParams[currentCulture];
-        const econ = area * p.econInsumoHa;
-        const sacas = area * p.sacasHa;
-        const sobras = sacas * p.sobraSaca;
-
-        resInsumos.textContent = 'R$ ' + Math.round(econ).toLocaleString('pt-BR');
-        resSacas.textContent = Math.round(sacas).toLocaleString('pt-BR') + ' sacas';
-        resSobras.textContent = 'R$ ' + Math.round(sobras).toLocaleString('pt-BR');
-      }
-
-      if (areaSlider) {
-        areaSlider.addEventListener('input', updateSimulator);
-      }
-
-      cultureBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          cultureBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          currentCulture = this.dataset.culture;
-          updateSimulator();
-        });
-      });
 
       // =========================================================================
-      // 3. FORMULÁRIO DE FILIAÇÃO
+      // 2. FORMULÁRIO DE FILIAÇÃO
       // =========================================================================
       const form = document.getElementById('coop-form');
       const formMsg = document.getElementById('form-msg');
