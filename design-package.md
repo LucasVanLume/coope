@@ -1,7 +1,7 @@
-# Design Package: COOPERALTA
+# Design Package: COOPE
 
 ## 1. Premissa da Marca
-No agronegócio, quem caminha sozinho arca com todos os riscos de mercado e de clima. A Cooperalta une a força de milhares de produtores para negociar insumos pelo menor custo, garantir a armazenagem e o escoamento total da colheita e devolver o resultado diretamente para quem trabalha a terra.
+No agronegócio, quem caminha sozinho arca com todos os riscos de mercado e de clima. A Coope une a força de milhares de produtores para negociar insumos pelo menor custo, garantir a armazenagem e o escoamento total da colheita e devolver o resultado diretamente para quem trabalha a terra de Pernambuco.
 
 ## 2. Paleta de Cores (Tokens CSS)
 ```css
@@ -30,12 +30,12 @@ No agronegócio, quem caminha sozinho arca com todos os riscos de mercado e de c
 | 1 | 0.00 a 0.20 | Vista aérea da lavoura ao amanhecer | "A terra produz. A união prospera." | Rise settle no carregamento |
 | 2 | 0.24 a 0.46 | Descida suave sobre a plantação madura | "Insumos com poder de compra coletivo. O custo certo na hora do plantio." | Drift-down |
 | 3 | 0.50 a 0.72 | Aproximação dos silos e estruturas | "Armazenagem segura e agrônomos ao seu lado dentro da porteira." | Grid snap-align |
-| 4 | 0.76 a 1.00 | Enquadramento estável da sede e da colheita | "Cooperalta. O resultado da safra valorizado em cada hectare." | Staged settle com botão |
+| 4 | 0.76 a 1.00 | Enquadramento estável da sede e da colheita | "Coope. O resultado da safra valorizado em cada hectare." | Staged settle com botão |
 
 ## 5. Hero Estático (Mobile e Movimento Reduzido)
 - Título: "A terra produz. A união prospera."
 - Subtítulo: "Segurança de armazenagem, compra conjunta de insumos e retorno proporcional de sobras para o produtor rural."
-- Botão: "Associe-se à Cooperalta"
+- Botão: "Associe-se à Coope"
 
 ## 6. Estrutura Abaixo do Hero
 1. Barra de Indicadores de Confiança: 3.200 cooperados, 1.4 milhão de sacas armazenadas, R$ 42 milhões em sobras distribuídas, 38 anos de solidez.
@@ -47,7 +47,7 @@ No agronegócio, quem caminha sozinho arca com todos os riscos de mercado e de c
 3. Momento Interativo:
    - Simulador de Benefício do Cooperado: o visitante seleciona a área plantada (em hectares) e o simulador calcula a economia média em insumos e a estimativa de sobras da safra.
 4. Voz do Cooperado:
-   - Depoimentos reais e fotos de produtores de soja, milho e café.
+   - Depoimentos reais e fotos de produtores agrícolas de Pernambuco.
 5. Perguntas Frequentes (FAQ):
    - Como funciona a divisão de sobras ao fim do ano?
    - Pequenos produtores recebem a mesma atenção técnica que grandes fazendas?
@@ -58,7 +58,7 @@ No agronegócio, quem caminha sozinho arca com todos os riscos de mercado e de c
    - Botão de envio: "Solicitar contato de um agrônomo".
    - Feedback: mensagem de confirmação com retorno previsto em até 24 horas.
 7. Rodapé Institucional:
-   - Dados de contato, ouvidoria, selo de cooperativismo e nota declarando a Cooperalta como cooperativa modelo institucional.
+   - Dados de contato, ouvidoria, selo de cooperativismo e nota declarando a Coope como cooperativa modelo institucional de Pernambuco.
 
 ## 7. Camada de Vetores (SVG)
 - Linhas suaves de curvas de nível topográficas que se desenham conforme a rolagem.
